@@ -31,7 +31,7 @@ def signup(request):
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
-                    'error': 'El Usuario ya exi'
+                    'error': 'El Usuario ya existe'
                 })
         else:
             return render(request, 'signup.html', {
