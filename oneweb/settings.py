@@ -26,11 +26,19 @@ SECRET_KEY = os.environ.get('SECRETE_KEY', default='you secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if DEBUG == True:
+    ALLOWED_HOSTS = [
+        '192.168.100.87',
+        '127.0.0.1',
+        'localhost',
+        '192.168.100.87',
 
-ALLOWED_HOSTS = []
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    ]
+else:
+    ALLOWED_HOSTS = []
+    RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    if RENDER_EXTERNAL_HOSTNAME:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -78,15 +86,22 @@ WSGI_APPLICATION = 'oneweb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
+if DEBUG == True: 
+   DATABASES: {
+   'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+     }
+   }
+else:
+    DATABASES = {
     'default': dj_database_url.config(
         default='postgresql://postgres:postgres@localhost/postgres',
-        conn_max_age=600
+            conn_max_age=600
 
 )
 }
-                
+
 
 #       'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
