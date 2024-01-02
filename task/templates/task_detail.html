@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="text-center">
+<ul>
+</ul>
+<h1 class="align-text-bottom text-center">Detalle de tareas</h1>
+<H2 class="text-capitalize text-lg-start">{{task.title }}</H2>
+{{error}}
+    <form method="post" class="" >
+        {% csrf_token %}
+        {{form}} 
+        <button class="" >
+            Actualizar
+        </button>
+        <br>
+    </form>
+            <form action="{% url 'borrar_task' task.id %}" method="POST">
+            <!-- <h1>{{delete_task}}</h1> -->
+            {% csrf_token %}
+            <button class="btn btn-danger">
+                Eliminar
+            </button>
+            </form>
+        <form action="{% url 'complete_task' task.id %}" method="POST" class="justify-content-between">
+            {% csrf_token %}
+            <button class="btn btn-success">
+                Completada
+            </button>
+         </form>
+    </form>
+</div>di
+</main>
+{% endblock %}

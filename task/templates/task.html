@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="text-centers">
+            <h1 class="text-center py-5">TAREAS</h1>
+            <div class="float-right">
+                <a class="btn" href="/task/create/">
+                    <img src="{% static 'source/icons/agregar.png' %}">
+                </a>
+            </div>
+            <h3 class="badge text-bg-danger">IMPORTANTE</h3>
+            <h3 class="badge text-bg-success">SIN IMPORTANCIA</h3>
+            </h2>
+<ul class="list-group">
+    {% for task in tasks %}
+    <a class="list-group-item" class="list-group-item" href="{% url 'task_detail' task.id %}">
+        <header class="d-flex justify-content-between">
+            {% if task.important %}
+            <h1 class="badge text-bg-danger">{{task.title}}
+            </h2>
+            {% else %}
+            <h1 class="badge text-bg-success">{{task.title}}</h1>
+            {% endif %}
+
+            <small>Cargado por: {{task.user.username}}</small>
+        </header>
+        <p>{{task.description}}</p>
+        <!-- <p>{{task.important}}</p> -->
+        
+        <p>{{task.datecompleted|date:'M j Y'}}</p>
+
+
+    </a>
+    {% endfor %}
+</ul>
+        </div>
+    </div>
+</main>
+{% endblock %}

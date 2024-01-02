@@ -1,0 +1,56 @@
+{% load static %}
+{% block content %}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/task">Task Manager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bienvenido</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">INICIO</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/task/create/">CREAR TEREAS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/task">TAREAS PENDIENTES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/tasks_completed">TAREAS COMPLETADAS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">CERRAR SESION</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">INICIAR SESION</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signin">REGISTRATE</a>
+            </li>
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+</body>
+</html>
